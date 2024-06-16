@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["orderByRelation"]
+  binaryTargets   = ["native", "rhel-openssl-1.0.x"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  password    String?
+  role        String       @default("User")
+  createdAt   String
+  updatedAt   String
+  userProfile UserProfile?
+  order       Order[]
+}
+
+model UserProfile {
+  id          Int     @id @default(autoincrement())
+  fullName    String
+  phoneNumber String? @unique
+  createdAt   String
+  updatedAt   String
+  userId      Int     @unique
+  user        User    @relation(fields: [userId], references: [id])
+}
+
+model Service {
+  id           Int     @id @default(autoincrement())
+  serviceImage String
+  packageName  String
+  price        Int
+  description  String
+  isPublish    Boolean
+  createdAt    String
+  updatedAt    String
+  order        Order[]
+}
+
+model Order {
+  id          Int     @id @default(autoincrement())
+  weddingDate String
+  status      String  @default("requested")
+  createdAt   String
+  updatedAt   String
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id])
+  serviceId   Int
+  service     Service @relation(fields: [serviceId], references: [id])
+}
