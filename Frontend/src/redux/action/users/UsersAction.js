@@ -47,7 +47,7 @@ export const logoutUserAction = () => (dispatch) => {
 
     CookieStorage.remove(CookiesKeys.AuthToken);
   } catch (err) {
-    handleRequestError(err);
+    // handleRequestError(err);
   }
 };
 

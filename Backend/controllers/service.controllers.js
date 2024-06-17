@@ -40,13 +40,16 @@ module.exports = {
         imageURL = url;
       }
 
+      // Proper conversion of isPublish to boolean
+      const isPublishBoolean = isPublish === "true" || isPublish === true;
+
       let newService = await prisma.service.create({
         data: {
           serviceImage: imageURL,
           packageName,
           price: Number(price),
           description,
-          isPublish: Boolean(isPublish),
+          isPublish: isPublishBoolean,
           createdAt: formattedDate(new Date()),
           updatedAt: formattedDate(new Date()),
         },
@@ -69,7 +72,7 @@ module.exports = {
       const file = req.file;
       let imageURL;
 
-      if (!packageName || !price || !description || !isPublish || !file) throw new CustomError(400, "Please provide packageName, price, description, and isPublish");
+      if (!packageName || !price || !description || !isPublish) throw new CustomError(400, "Please provide packageName, price, description, and isPublish");
 
       const service = await prisma.service.findUnique({
         where: { id: Number(serviceId) },
@@ -88,6 +91,9 @@ module.exports = {
         imageURL = url;
       }
 
+      // Proper conversion of isPublish to boolean
+      const isPublishBoolean = isPublish === "true" || isPublish === true;
+
       let editedService = await prisma.service.update({
         where: {
           id: Number(service.id),
@@ -97,7 +103,7 @@ module.exports = {
           packageName,
           price: Number(price),
           description,
-          isPublish: Boolean(isPublish),
+          isPublish: isPublishBoolean,
           updatedAt: formattedDate(new Date()),
         },
       });

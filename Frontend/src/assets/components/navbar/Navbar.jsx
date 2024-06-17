@@ -24,13 +24,13 @@ export const Navbar = () => {
       if (token) {
         const user = await dispatch(getUserAuthenticateAction());
         if (!user) {
-          await dispatch(logoutUserAction());
+          return await dispatch(logoutUserAction());
         }
       }
     };
 
-    fetchData();
-  }, [token, dispatch]);
+    if (location.pathname !== "/history") fetchData();
+  }, [token, dispatch, location.pathname]);
 
   useEffect(() => {
     const handleScroll = () => {

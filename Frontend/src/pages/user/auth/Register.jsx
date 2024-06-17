@@ -165,9 +165,9 @@ export const Register = () => {
 
   return (
     <>
-      <div class="flex h-screen items-center justify-center">
-        <div class="flex w-[35%] flex-col gap-5 rounded-md border p-5 shadow-lg">
-          <h2 class="text-center text-2xl font-bold">REGISTER</h2>
+      <div className="flex h-screen items-center justify-center">
+        <div className="flex w-[35%] flex-col gap-5 rounded-md border p-5 shadow-lg">
+          <h2 className="text-center text-2xl font-bold">REGISTER</h2>
           <form
             className="flex w-full flex-col gap-4"
             onKeyDown={handleRegister}

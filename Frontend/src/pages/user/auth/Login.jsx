@@ -56,9 +56,9 @@ export const Login = () => {
 
   return (
     <>
-      <div class="flex h-screen items-center justify-center">
-        <div class="flex w-[20%] flex-col gap-5 rounded-md border p-5 shadow-lg">
-          <h2 class="text-center text-2xl font-bold">LOGIN</h2>
+      <div className="flex h-screen items-center justify-center">
+        <div className="flex w-[20%] flex-col gap-5 rounded-md border p-5 shadow-lg">
+          <h2 className="text-center text-2xl font-bold">LOGIN</h2>
           <form className="flex w-full flex-col gap-4" onKeyDown={handleLogin}>
             <div className="flex w-full flex-col">
               <label htmlFor="emailOrPhoneNumber">Email / Phone Number</label>
